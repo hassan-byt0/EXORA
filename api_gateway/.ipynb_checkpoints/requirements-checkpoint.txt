@@ -1,0 +1,13 @@
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.9
+whisper-timestamped==1.14.2
+pytesseract==0.3.10
+pillow==10.0.1
+pydantic-settings==2.0.3
+python-dotenv==1.0.0
+pydantic==2.5.2
+aio-pika==9.4.1
+python-json-logger==2.0.7
+openai-whisper==20231117
+tiktoken==0.5.1

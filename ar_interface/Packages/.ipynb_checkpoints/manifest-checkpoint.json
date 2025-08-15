@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "com.unity.xr.arfoundation": "5.0.7",
+    "com.unity.xr.arkit": "5.0.7",
+    "com.unity.xr.arcore": "5.0.7",
+    "com.unity.inputsystem": "1.6.3",
+    "com.unity.textmeshpro": "3.0.6"
+  },
+  "scopedRegistries": [
+    {
+      "name": "Unity",
+      "url": "https://packages.unity.com",
+      "scopes": ["com.unity"]
+    }
+  ]
+}

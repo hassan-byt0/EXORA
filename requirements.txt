@@ -1,0 +1,29 @@
+# --- Centralize requirements for all submodules ---
+# All dependencies from agents, api_gateway, memory, rag_system merged here
+langchain==0.1.11
+langchain-openai==0.0.8
+langchain-community==0.0.27
+langchain-google-genai
+neo4j==5.17.0
+transformers==4.39.3
+torch==2.2.1
+ultralytics==8.1.18
+openai==1.14.2
+pydantic==2.6.1
+python-dotenv==1.0.0
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.9
+whisper-timestamped==1.14.2
+pytesseract==0.3.10
+pillow==10.0.1
+pydantic-settings==2.0.3
+aio-pika==9.4.1
+python-json-logger==2.0.7
+openai-whisper==20231117
+tiktoken==0.5.2
+sentence-transformers==2.6.1
+numpy==1.26.4
+python-dateutil==2.8.2
+apache-age-python==0.0.7
+pytz==2024.1

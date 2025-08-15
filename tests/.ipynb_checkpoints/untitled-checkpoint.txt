@@ -1,0 +1,18 @@
+# Test environment configuration
+ENV=testing
+API_PORT=8000
+
+# Test database (use separate instance)
+NEO4J_URI=bolt://localhost:7688
+NEO4J_USER=neo4j
+NEO4J_PASSWORD=testpassword
+
+# Test messaging
+RABBITMQ_HOST=localhost
+RABBITMQ_USER=testuser
+RABBITMQ_PASSWORD=testpassword
+
+# Testing flags
+TEST_MODE=true
+TEST_AUDIO_ENABLED=true
+TEST_IMAGE_ENABLED=true

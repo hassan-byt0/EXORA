@@ -1,0 +1,2 @@
+# Deprecated: Use root requirements.txt for all dependencies
+# This file is kept for backward compatibility, but should not be used.

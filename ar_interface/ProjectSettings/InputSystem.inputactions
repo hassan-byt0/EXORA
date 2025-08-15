@@ -1,0 +1,85 @@
+{
+  "name": "ARInputActions",
+  "maps": [
+    {
+      "name": "AR",
+      "actions": [
+        {
+          "name": "Tap",
+          "type": "Button"
+        },
+        {
+          "name": "Voice",
+          "type": "Button"
+        },
+        {
+          "name": "GazePosition",
+          "type": "Value",
+          "expectedControlType": "Vector2"
+        }
+      ],
+      "bindings": [
+        {
+          "path": "<Mouse>/leftButton",
+          "action": "Tap",
+          "groups": "Desktop"
+        },
+        {
+          "path": "<XRController>{RightHand}/triggerPressed",
+          "action": "Tap",
+          "groups": "XR"
+        },
+        {
+          "path": "<Keyboard>/space",
+          "action": "Voice",
+          "groups": "Desktop"
+        },
+        {
+          "path": "<XRController>{RightHand}/gripPressed",
+          "action": "Voice",
+          "groups": "XR"
+        },
+        {
+          "path": "<Mouse>/position",
+          "action": "GazePosition",
+          "groups": "Desktop"
+        },
+        {
+          "path": "<XRHead>/centerEyePosition",
+          "action": "GazePosition",
+          "groups": "XR"
+        }
+      ]
+    }
+  ],
+  "controlSchemes": [
+    {
+      "name": "Desktop",
+      "bindingGroup": "Desktop",
+      "devices": [
+        {
+          "devicePath": "<Keyboard>",
+          "isOptional": false
+        },
+        {
+          "devicePath": "<Mouse>",
+          "isOptional": false
+        }
+      ]
+    },
+    {
+      "name": "XR",
+      "bindingGroup": "XR",
+      "devices": [
+        {
+          "devicePath": "<XRHead>",
+          "isOptional": false
+        },
+        {
+          "devicePath": "<XRController>",
+          "isOptional": false
+        }
+      ]
+    }
+  ]
+}

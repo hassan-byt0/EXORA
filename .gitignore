@@ -1,0 +1,32 @@
+# Virtual environment
+venv/
+env/
+.env
+infrastructure/.env
+
+# Neo4j data and plugins
+infrastructure/neo4j/data/
+infrastructure/neo4j/plugins/
+infrastructure/neo4j/logs/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+venv/
+infrastructure/neo4j/data/
+infrastructure/neo4j/plugins/
+__pycache__/
+*.pyc
+.DS_Store
+infrastructure/.env
+*.env
+.env

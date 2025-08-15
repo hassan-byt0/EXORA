@@ -1,0 +1,21 @@
+ResponsePrefab:
+  Components:
+    - Canvas:
+        Render Mode: World Space
+    - CanvasScaler:
+        Dynamic Pixels Per Unit: 10
+    - GraphicRaycaster
+    - CanvasGroup
+    - RectTransform:
+        Width: 2
+        Height: 1
+  Children:
+    - Background:
+        Image:
+          Color: #00000080
+    - Text:
+        TextMeshPro - Text:
+          Text: "Response will appear here"
+          FontSize: 0.2
+          Alignment: Center
+          Color: White

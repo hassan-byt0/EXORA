@@ -1,0 +1,99 @@
+version: '3.8'
+
+services:
+  # API Gateway
+  api-gateway:
+    build: ../api_gateway
+    image: aahb-api-gateway:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV=production
+      - NEO4J_URI=bolt://neo4j:7687
+      - RABBITMQ_HOST=rabbitmq
+      - WHISPER_MODEL=base
+    depends_on:
+      - neo4j
+      - rabbitmq
+    networks:
+      - aahb-network
+
+  # Agent System
+  agent-orchestrator:
+    build: ../agents
+    image: aahb-agent-orchestrator:latest
+    command: python start_agents.py
+    environment:
+      - ENV=production
+      - NEO4J_URI=bolt://neo4j:7687
+      - RABBITMQ_HOST=rabbitmq
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ../agents:/app
+    depends_on:
+      - neo4j
+      - rabbitmq
+    networks:
+      - aahb-network
+
+  # Graph Database
+  neo4j:
+    image: neo4j:5.0-enterprise
+    container_name: neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - ./neo4j/data:/data
+      - ./neo4j/plugins:/plugins
+    environment:
+      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}
+      - NEO4J_dbms_memory_heap_max__size=4G
+      - NEO4J_apoc_export_file_enabled=true
+      - NEO4J_apoc_import_file_enabled=true
+      - NEO4J_apoc_import_file_use__neo4j__config=true
+      - NEO4JLABS_PLUGINS=["apoc", "graph-data-science"]
+    networks:
+      - aahb-network
+
+  # Message Broker
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
+    volumes:
+      - ./rabbitmq/configuration:/etc/rabbitmq
+    networks:
+      - aahb-network
+
+  # Monitoring
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - aahb-network
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+    volumes:
+      - ./monitoring/grafana-datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+    depends_on:
+      - prometheus
+    networks:
+      - aahb-network
+
+networks:
+  aahb-network:
+    driver: bridge
